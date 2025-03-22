@@ -1,6 +1,6 @@
 import nltk
 import pandas as pd
-from sklearn.feature_extraction.text import TfidfVectorizer  # Use Tfidf instead of CountVectorizer
+from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score, classification_report
@@ -12,7 +12,10 @@ import matplotlib.pyplot as plt
 # !pip install nltk pandas scikit-learn wordcloud streamlit
 
 # Step 2: Data Preparation
-nltk.download("movie_reviews")
+try:
+    nltk.data.find('corpora/movie_reviews')
+except LookupError:
+    nltk.download("movie_reviews")
 
 # Load the dataset
 documents = [
